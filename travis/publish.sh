@@ -5,6 +5,8 @@ if [ $TRAVIS_PULL_REQUEST == false ] ; then
     version=${TRAVIS_BRANCH}
   fi
 
+  version=$(echo ${version} | sed 's/\(.*\)\/\(.*\)/\1_\2/')
+
   username=$(echo ${TRAVIS_REPO_SLUG}  | sed  "s/\(.*\)\/.*/\1/")
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
